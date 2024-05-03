@@ -8,6 +8,9 @@ namespace UlusMetalDers1
 {
     public class Daire
     {
-
+        public int No { get; set; }
+        public int Kat { get; set; }
+        public double Metrekare { get; set; }
+        public int OdaSayisi { get; set; }
     }
 }
