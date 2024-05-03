@@ -31,12 +31,13 @@ namespace UlusMetalDers1
         private void Btn1_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show(TxtBox1.Text);
-            MessageBox.Show(uniqueidentifier.ToString());
+            //MessageBox.Show(uniqueidentifier.ToString());
             Calisma();
         }
 
         void Calisma()
         {
+            #region Basit degiskenler ve tur donusumu
             // C# da degiskenler
             // Isimlendirme
             // - Rakam ile baslanamaz
@@ -82,11 +83,51 @@ namespace UlusMetalDers1
             yaziIle = Convert.ToString(enBuyukTamSayi);
             yaziIle = enBuyukTamSayi.ToString();
 
+            // Nullable value type
+            int? r1 = null;
+            r1 = 12;
+            if (r1.HasValue)
+            {
+                int s1 = r1.Value;
+            }
+            DateTime? tt = null;
+            DateTime dgunu = new DateTime();
+            if (tt.HasValue)
+            {
+                dgunu = tt.Value;
+            }
+            else
+            {
+                dgunu = DateTime.Now;
+            }
+            // if ile ilgili: Eger kod blogunda sadece TEK satir var ise; scope parantezlerini kullanmayabilirsiniz:
+            DateTime dgunu2 = new DateTime();
+            if (tt.HasValue)
+                dgunu2 = tt.Value;
+            else
+                dgunu2 = DateTime.Now;
+
+            // ozellikle atamalarda kullandigimiz if yapisi: (Sadece tek bir if ve else var ise)
+            DateTime dgunu3 = tt.HasValue ? tt.Value : DateTime.Now;
+
+            int m = 10;
+            int n = -10;
+            List<int> liste = new List<int>()
+            {
+                m > 0 ? m : 0,
+                n > 0 ? n : 0
+            };
+
+            Nullable<int> nullableInt = null;
+
             // Casting
             // casting bir convert islemi degildir; kimlik bildirmektir
             object s = 1234;
             rakam = (int)s;
 
+            #endregion
+
+            #region Islemler ve Kelleksiyon yapilari
             // sayi yapilarinda matematiksel islemler:
             rakam = 10;
             rakam = rakam + 2; // rakami 2 arttirdik
@@ -96,8 +137,8 @@ namespace UlusMetalDers1
             rakam++; // 1 arttirdik;
 
             //rakam su anda 16
-            MessageBox.Show((rakam++).ToString()); // ekrana 16 yazar ama hemen ardindan 17 yapar
-            MessageBox.Show(rakam.ToString());
+            //MessageBox.Show((rakam++).ToString()); // ekrana 16 yazar ama hemen ardindan 17 yapar
+            //MessageBox.Show(rakam.ToString());
 
             // Dizi ve Kolleksiyon yapilari
             string[] isimlerDizisi = new string[3];
@@ -114,7 +155,7 @@ namespace UlusMetalDers1
             int listeninUzunlugu = meyveler.Count; // su an 0
             meyveler.Add("elma");
             meyveler.Add("portakal");
-            meyveler.AddRange(new List<string>(){ "armut", "karpuz" });
+            meyveler.AddRange(new List<string>() { "armut", "karpuz" });
             listeninUzunlugu = meyveler.Count; // su an 4
             // listenin en basina eklemek istiyorum: (elma, portakal, armut, karpuz)
             meyveler.Insert(1, "erik"); //(elma, erik, portakal, amut, karpuz)
@@ -122,21 +163,33 @@ namespace UlusMetalDers1
             int mandalinaIndexi = meyveler.IndexOf("mandalina"); // -1
             string ucuncuMeyve = meyveler[2];
 
+            #endregion
 
-
+            #region Kosul ifadeleri ve donguler
             // Kosul ifadeler (if, switch)
+            // operatorler
+            // esit ise : ==
+            // esit degil ise : !=
+            // buyuk ise: >
+            // kucuk ise: <
+            // buyuk ve esit ise: >=
+            // kucuk esit ise: <=
+            // mod operator: % : bir sayinin , verilen diger sayiya bolumunden kalani verir
+            // AND operatoru: &&
+            // OR operatoru: ||
+
             rakam = 355;
             if (rakam < 10)
             {
-                MessageBox.Show("Teke basamakli rakam");
+                //MessageBox.Show("Teke basamakli rakam");
             }
             else if (rakam < 100 && rakam >= 10)
             {
-                MessageBox.Show("Cift basamakli rakam");
+                //MessageBox.Show("Cift basamakli rakam");
             }
             else
             {
-                MessageBox.Show("Cok basamakli rakam");
+                //MessageBox.Show("Cok basamakli rakam");
             }
 
             switch (rakam)
@@ -151,10 +204,10 @@ namespace UlusMetalDers1
                 case 7:
                 case 8:
                 case 9:
-                    MessageBox.Show("tek basamakli rakam");
+                    //MessageBox.Show("tek basamakli rakam");
                     break;
                 default:
-                    MessageBox.Show("cok basamakli rakam");
+                    //MessageBox.Show("cok basamakli rakam");
                     break;
             }
 
@@ -263,7 +316,7 @@ namespace UlusMetalDers1
             // isim dizisindeki tum isimleri onyuzdeki listbox a yazdirdik
             for (int indexIsim = 0; indexIsim < isimlerDizisi.Length; indexIsim++)
             {
-                IsimListBox.Items.Add(isimlerDizisi[indexIsim]); 
+                IsimListBox.Items.Add(isimlerDizisi[indexIsim]);
             }
 
             // yukaridakinin aynisi ama daha gelismisi:
@@ -274,7 +327,7 @@ namespace UlusMetalDers1
 
             // yuzden 0a kadar olan 3un kati sayilari cikariyoruz
             List<int> ucunKatlariAzalan = new List<int>();
-            for (int number = 99; number > 0; number-= 3)
+            for (int number = 99; number > 0; number -= 3)
             {
                 ucunKatlariAzalan.Add(number);
             }
@@ -290,6 +343,10 @@ namespace UlusMetalDers1
                     break;
                 }
             }
+
+            #endregion
+
+            #region String Operasyonlari, DateTime metodlari ve Math class'i 
 
             // String operasyonlari
             // escape character: \
@@ -330,49 +387,154 @@ namespace UlusMetalDers1
             }
             string meyveRaporu = meyveBuilder.ToString();
 
+
+
+            // String fonksiyonlari
+            yazi = "Sayin Emre bey, bu islemi yapabilmek icin gereken kodunuz: 1234. Bu kodu kimse ile paylasmayiniz.";
+            // null kontrol
+            if (!string.IsNullOrEmpty(yazi))
+            {
+                // basinda ! olunca: degil ise: yani string dolu ise demis olduk
+            }
+
+            char[] harfler = yazi.ToCharArray();
+            // belli kelimeyi bulmak icin
+            int kodunuzKelimesininIndexi = yazi.IndexOf("kodunuz"); // eger bulamaz ise: -1; burada kodunuz icin 50 donecek
+            string gelenKod = yazi.Substring(kodunuzKelimesininIndexi + 9, 4); // "kodunuz: " : 9, kod: 4 karakter. Boylece 1234 u almis olduk
+            yazi = "Sana yuz defa soyledim, yuzerken yuzune dikkat et.";
+            List<int> yuzListesi = new List<int>();
+            int yuzIndex = 0;
+            while (yuzIndex != -1)
+            {
+                if (yuzIndex > 0)
+                    yuzIndex++;
+                yuzIndex = yazi.IndexOf("yuz", yuzIndex);
+                if (yuzIndex != -1)
+                    yuzListesi.Add(yuzIndex);
+            }
+
+            yazi = "Bu egitimimiz Phyton uzerine, ve toplam 60 saat. Egitmen Emre Tekinsoy.";
+            yazi = yazi.Replace("Phyton", "C#");
+
+            // buyuk harf yapmak
+            yazi = yazi.ToUpper();
+            // kucuk harf yapmak
+            yazi = yazi.ToLower();
+
+            string[] kelimeler = yazi.Split(' ', ',', '.');
+            char[] ayiraclar = new char[] { ' ', ',', '.' };
+            List<string> kelimeList = yazi.Split(ayiraclar, StringSplitOptions.RemoveEmptyEntries).ToList();
+
+            meyveler = new List<string>() { "Elma", "Armut", "Portakal", "Mandalina", "Erik" };
+            string meyveString = string.Join(", ", meyveler);
+
+            yazi = "               Emre Tekinsoy             ";
+            string bastanBosluklariTemizledik = yazi.TrimStart();
+            string sondanBosluklariTemizle = yazi.TrimEnd();
+            string sagdakiVeSoldakileriTemizleri = yazi.Trim();
+
+            // aralardaki tum fazladan bosluklari teke indirebilmek icin, bir dongude her bir CIFT boslugu, TEK ile degistirerek; azaltarak yok ettik:
+            yazi = "Mustafa           Emre         Tekinsoy";
+            while (yazi.IndexOf("  ") > -1)
+            {
+                yazi = yazi.Replace("  ", " ");
+            }
+
+            // DateTime fonksiyonlari:
+            DateTime bugun = DateTime.Now;
+            int ayinKaci = bugun.Day;
+            string uzunFormatTarih = bugun.ToLongDateString(); // 3 May 2024
+            string kisaFormatTarih = bugun.ToShortDateString(); // 3.5.2024
+            string uzunFormatSaat = bugun.ToLongTimeString(); // 11:35:33
+            string kisaFormatSaat = bugun.ToShortTimeString(); // 11:35
+            string customFormat = bugun.ToString("dd.MM.yyyy hh:mm:ss");
+            string customSqlFormat = bugun.ToString("yyyy-MM-dd HH:mm:ss");
+            // tarih format parametreleri:
+            // yil: y: 1 yada 2 digit
+            // yil: yy: hep 2 digit (tek basamakta solda 0)
+            // yil: yyy: 3 yada 4 digit
+            // yil: yyyy: 2024
+            // ay: M / MM
+            // gun: d / dd
+            // saat: h / hh (AM/PM olarak)
+            // saat: H / HH (24 saat formati)
+            // dakika: m / mm
+            // saniye: s / ss
+
+            DateTime sonKullanmaTarihi = bugun.AddMonths(3); // 3 ay raf omru olan urununn SKT hesapladik
+
+            // Bir tarihi bir tarihten cikartmak: yas hesaplamak gibi
+            DateTime dgunum = new DateTime(1976, 3, 18);
+            TimeSpan surec = bugun.Subtract(dgunum);
+            int yasim = Convert.ToInt32(surec.TotalDays / 365d);
+            // Not: double int a convert edilirken kusurat atilir
+            int kacGunlukmusum = Convert.ToInt32(surec.TotalDays);
+
+            // Matematik
+            int kalan = 16 % 7;// 2
+            List<int> puanlar = new List<int>() { 12, 33, 42, 11, 58, 97, 25 };
+            // Bu listedeki cift sayilari cikaralim
+            List<int> ciftPuanlar = new List<int>();
+            foreach (int herbirSayi in puanlar)
+            {
+                if (herbirSayi % 2 == 0)
+                {
+                    ciftPuanlar.Add(herbirSayi);
+                }
+            }
+
+            // Yuvarlama yapmak istersem:
+            double asagiYuvarladim = Math.Floor(12.67); //12
+            double yukariYuvarladim = Math.Ceiling(12.21); // 13
+            double yuvarla = Math.Round(12.51); // 13
+            yuvarla = Math.Round(12.99199, 2); // ondalik 2 basamaga kadar yuvarla: 12.99
+            #endregion
+
+            #region Fonksiyonlarin kulllanimi
             // Fonksiyon ve parametreler
             rakam = BirSayiUret();
             rakam = SayilariTopla(12, 23, 34, 45);
             string ifade = IsimListesiOlustur("Katilimcilarimiz:", "Ahmet", "MEhmet", "Ayse");
-            string hitap = HitapOlustur("Ali", "Aydin","Prof.Dr.");
-            hitap = HitapOlustur("Zeynep", "Yildirim", selam:"Iyiaksamlar");
+            string hitap = HitapOlustur("Ali", "Aydin", "Prof.Dr.");
+            hitap = HitapOlustur("Zeynep", "Yildirim", selam: "Iyiaksamlar");
             hitap = HitapOlustur("Ahmet", "Aydin");
 
             int a = 15;
             SayiyiYaz0(a);
-            MessageBox.Show(a.ToString());
+            //MessageBox.Show(a.ToString());
 
             a = 15;
             SayiyiYaz1(ref a);
-            MessageBox.Show(a.ToString());
+            //MessageBox.Show(a.ToString());
 
             a = 15;
             SayiyiYaz2(out a);
-            MessageBox.Show(a.ToString());
+            //MessageBox.Show(a.ToString());
 
             //rakam = Convert.ToInt32(TxtBox1.Text);
             if (int.TryParse(TxtBox1.Text, out a))
             {
                 rakam = a;
             }
+            #endregion
         }
 
         void SayiyiYaz0(int sayi)
         {
             sayi += 10;
-            MessageBox.Show(sayi.ToString());
+            //MessageBox.Show(sayi.ToString());
         }
 
         void SayiyiYaz1(ref int sayi)
         {
             sayi += 10;
-            MessageBox.Show(sayi.ToString());
+            //MessageBox.Show(sayi.ToString());
         }
         void SayiyiYaz2(out int sayi)
         {
             sayi = 15;
             sayi += 10;
-            MessageBox.Show(sayi.ToString());
+            //MessageBox.Show(sayi.ToString());
         }
 
 
@@ -381,7 +543,7 @@ namespace UlusMetalDers1
         {
             TxtBox1.Clear();
         }
-        Random  rastgele = new Random();
+        Random rastgele = new Random();
 
         /// <summary>
         /// Bu metod rastgele 0 ile 100 arasi sayi uretir
@@ -441,7 +603,7 @@ namespace UlusMetalDers1
             }
             return stringBuilder.ToString();
         }
-        string HitapOlustur( string isim, string soyisim, string unvan = "Sayin", string selam = "Merhaba")
+        string HitapOlustur(string isim, string soyisim, string unvan = "Sayin", string selam = "Merhaba")
         {
             //if (string.IsNullOrEmpty(unvan))
             //{
