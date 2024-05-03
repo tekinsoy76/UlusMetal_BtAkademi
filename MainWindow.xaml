@@ -9,6 +9,7 @@
     <Grid>
         <Button Name="Btn1" Content="Tikla" HorizontalAlignment="Left" Margin="79,46,0,0" VerticalAlignment="Top" Click="Btn1_Click"/>
         <TextBox Name="TxtBox1" HorizontalAlignment="Left" Margin="166,46,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <ListBox Name="IsimListBox" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100,200,0,0" Height="100" Width="360"/>
 
     </Grid>
 </Window>
